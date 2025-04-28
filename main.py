@@ -1,4 +1,5 @@
 from calculator import Calculator
+from scientific import ScientificCalculator
 from user import User
 
 def menu():
@@ -8,9 +9,10 @@ def menu():
     print("2. Subtract")
     print("3. Multiply")
     print("4. Divide")
-    print("5. Square Root")
-    print("6. Exponentiate")
-    print("7. Logarithm")
+    print("5. Square Root (Scientific Mode)")
+    print("6. Exponentiate (Scientific Mode)")
+    print("7. Logarithm (Scientific Mode)")
+    print("8. View Calculation History")
     print("0. Exit")
 
 def get_inputs():
@@ -22,6 +24,7 @@ def main():
     name = input("Enter your name: ")
     user = User(name)
     calculator = Calculator()
+    sci_calc = ScientificCalculator()
 
     while True:
         menu()
@@ -30,27 +33,49 @@ def main():
         if choice == '0':
             print(f"Goodbye, {user.name}!")
             break
-        elif choice in ['1', '2', '3', '4', '6']:
+        elif choice in ['1', '2', '3', '4']:
             a, b = get_inputs()
             calculator.set_inputs(a, b)
+        elif choice in ['6']:
+            a = float(input("Enter base: "))
+            b = float(input("Enter exponent: "))
+            sci_calc.set_inputs(a, b)
         elif choice in ['5', '7']:
             a = float(input("Enter input A: "))
-            calculator.set_inputs(a, 0)
+            sci_calc.set_inputs(a, 0)
 
         if choice == '1':
-            print("Result:", calculator.add())
+            result = calculator.add()
+            print("Result:", result)
+            user.add_to_history("Addition", result)
         elif choice == '2':
-            print("Result:", calculator.subtract())
+            result = calculator.subtract()
+            print("Result:", result)
+            user.add_to_history("Subtraction", result)
         elif choice == '3':
-            print("Result:", calculator.multiply())
+            result = calculator.multiply()
+            print("Result:", result)
+            user.add_to_history("Multiplication", result)
         elif choice == '4':
-            print("Result:", calculator.divide())
+            result = calculator.divide()
+            print("Result:", result)
+            user.add_to_history("Division", result)
         elif choice == '5':
-            print("Result:", calculator.square_root())
+            result = sci_calc.square_root(sci_calc.inputA)
+            print("Result:", result)
+            user.add_to_history("Square Root", result)
         elif choice == '6':
-            print("Result:", calculator.exponentiate())
+            result = sci_calc.exponentiate(sci_calc.inputA, sci_calc.inputB)
+            print("Result:", result)
+            user.add_to_history("Exponentiation", result)
         elif choice == '7':
-            print("Result:", calculator.logarithm())
+            result = sci_calc.logarithm(sci_calc.inputA)
+            print("Result:", result)
+            user.add_to_history("Logarithm", result)
+        elif choice == '8':
+            print("\nCalculation History:")
+            for op, res in user.get_history():
+                print(f"{op}: {res}")
         else:
             print("Invalid option, please try again.")
 

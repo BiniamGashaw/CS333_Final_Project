@@ -1,0 +1,12 @@
+# Ignore my venv used to run coverage reports because im on MAC
+venv/
+
+# Ignore coverage report folders
+htmlcov/
+coverage/
+
+# Ignore Python irrelevant files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd

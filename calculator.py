@@ -32,20 +32,3 @@ class Calculator:
             self.output = "Error: Division by zero"
         return self.output
 
-    def square_root(self):
-        if self.inputA >= 0:
-            self.output = math.sqrt(self.inputA)
-        else:
-            self.output = "Error: Negative input"
-        return self.output
-
-    def exponentiate(self):
-        self.output = self.inputA ** self.inputB
-        return self.output
-
-    def logarithm(self):
-        if self.inputA > 0:
-            self.output = math.log(self.inputA)
-        else:
-            self.output = "Error: Logarithm undefined for non-positive values"
-        return self.output
