@@ -12,3 +12,10 @@ It supports:
 
 
 
+## Commands to run the program and tests.
+
+-source venv/bin/activate
+-pip install -r requirements.txt
+-make test
+-make integration-test
+-make coverage
