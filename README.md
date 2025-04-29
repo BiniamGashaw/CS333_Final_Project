@@ -19,3 +19,6 @@ It supports:
 -make test
 -make integration-test
 -make coverage
+
+## To run mac 
+- xattr -d com.apple.quarantine calculator-main
