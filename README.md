@@ -22,3 +22,5 @@ It supports:
 
 ## To run mac 
 - xattr -d com.apple.quarantine calculator-main
+
+-
