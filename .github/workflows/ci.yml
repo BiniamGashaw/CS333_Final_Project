@@ -17,25 +17,28 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.13.2'
+        python-version: '3.13'
 
     - name: Install dependencies
       run: |
+        python -m venv venv
+        source venv/bin/activate
+        python -m pip install --upgrade pip
         pip install -r requirements.txt
-        pip install coverage
+        pip install coverage pyinstaller
 
-    - name: Run Unit Tests
-      run: make test
+    - name: Run Tests
+      run: |
+        make test
+        make integration-test
+        make coverage
 
-    - name: Run Integration Tests
-      run: make integration-test
+    - name: Package as Executable
+      run: |
+        pyinstaller --onefile main.py --name calculator-main
 
-    - name: Run Coverage
-      run: make coverage
-
-    - name: Upload Calculator Script
+    - name: Upload Executable Artifact
       uses: actions/upload-artifact@v4
       with:
         name: calculator-main
-        path: main.py
-
+        path: dist/calculator-main
