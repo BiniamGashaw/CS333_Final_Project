@@ -15,10 +15,11 @@ def menu():
     print("8. View Calculation History")
     print("0. Exit")
 
-def get_inputs():
+'''def get_inputs():
     a = float(input("Enter input A: "))
     b = float(input("Enter input B: "))
     return a, b
+'''
 
 def main():
     name = input("Enter your name: ")
